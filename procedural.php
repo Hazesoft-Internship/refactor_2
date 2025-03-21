@@ -1,4 +1,7 @@
 <?php
+
+header('Content-Type: text/html; charset=utf-8');
+
 // Student Grade Management System
 
 // Database of students (simulated with arrays)
@@ -35,13 +38,13 @@ function addGrade($studentId, $courseCode, $score) {
     }
 
     if ($studentIndex == -1) {
-        echo "Error: Student not found.\n";
+        echo "Error: Student not found.<br>";
         return false;
     }
 
     // Validate score
     if ($score < 0 || $score > 100) {
-        echo "Error: Score must be between 0 and 100.\n";
+        echo "Error: Score must be between 0 and 100.<br>";
         return false;
     }
 
@@ -56,7 +59,7 @@ function addGrade($studentId, $courseCode, $score) {
     }
 
     if (!$courseExists) {
-        echo "Error: Course not found.\n";
+        echo "Error: Course not found.<br>";
         return false;
     }
 
@@ -66,7 +69,7 @@ function addGrade($studentId, $courseCode, $score) {
             // Update existing grade
             $students[$studentIndex]['courses'][$index]['score'] = $score;
             $students[$studentIndex]['courses'][$index]['letterGrade'] = calculateLetterGrade($score, $students[$studentIndex]['type']);
-            echo "Grade updated for student {$students[$studentIndex]['name']} in course {$courseCode}.\n";
+            echo "Grade updated for student {$students[$studentIndex]['name']} in course {$courseCode}.<br>";
             $totalGradesAssigned++;
             return true;
         }
@@ -79,7 +82,7 @@ function addGrade($studentId, $courseCode, $score) {
         'letterGrade' => calculateLetterGrade($score, $students[$studentIndex]['type'])
     ];
 
-    echo "Grade added for student {$students[$studentIndex]['name']} in course {$courseCode}.\n";
+    echo "Grade added for student {$students[$studentIndex]['name']} in course {$courseCode}.<br>";
     $totalGradesAssigned++;
     return true;
 }
@@ -122,14 +125,14 @@ function calculateGPA($studentId) {
     }
 
     if ($studentIndex == -1) {
-        echo "Error: Student not found.\n";
+        echo "Error: Student not found.<br>";
         return -1;
     }
 
     $student = $students[$studentIndex];
 
     if (empty($student['courses'])) {
-        echo "Student has no courses.\n";
+        echo "Student has no courses.<br>";
         return 0;
     }
 
@@ -195,29 +198,29 @@ function displayStudentReport($studentId) {
     }
 
     if ($studentIndex == -1) {
-        echo "Error: Student not found.\n";
+        echo "Error: Student not found.<br>";
         return;
     }
 
     $student = $students[$studentIndex];
     $gpa = calculateGPA($studentId);
 
-    echo "\n====== Student Report ======\n";
-    echo "ID: {$student['id']}\n";
-    echo "Name: {$student['name']}\n";
-    echo "Type: {$student['type']}\n";
-    echo "GPA: {$gpa}\n";
-    echo "Courses:\n";
+    echo "<br>====== Student Report ======<br>";
+    echo "ID: {$student['id']}<br>";
+    echo "Name: {$student['name']}<br>";
+    echo "Type: {$student['type']}<br>";
+    echo "GPA: {$gpa}<br>";
+    echo "Courses:<br>";
 
     if (empty($student['courses'])) {
-        echo "No courses registered.\n";
+        echo "No courses registered.<br>";
     } else {
         foreach ($student['courses'] as $course) {
-            echo "- {$course['code']}: Score = {$course['score']}, Grade = {$course['letterGrade']}\n";
+            echo "- {$course['code']}: Score = {$course['score']}, Grade = {$course['letterGrade']}<br>";
         }
     }
 
-    echo "==========================\n";
+    echo "==========================<br>";
 }
 
 // Function to get statistics about the system
@@ -235,13 +238,13 @@ function getSystemStatistics() {
         }
     }
 
-    echo "\n====== System Statistics ======\n";
-    echo "Total Students: {$totalStudents}\n";
-    echo "Students with Courses: {$studentsWithCourses}\n";
-    echo "Total Course Enrollments: {$totalCourseEnrollments}\n";
-    echo "Total Grades Assigned: {$totalGradesAssigned}\n";
-    echo "Total Students Processed: {$totalStudentsProcessed}\n";
-    echo "==============================\n";
+    echo "<br>====== System Statistics ======<br>";
+    echo "Total Students: {$totalStudents}<br>";
+    echo "Students with Courses: {$studentsWithCourses}<br>";
+    echo "Total Course Enrollments: {$totalCourseEnrollments}<br>";
+    echo "Total Grades Assigned: {$totalGradesAssigned}<br>";
+    echo "Total Students Processed: {$totalStudentsProcessed}<br>";
+    echo "==============================<br>";
 }
 
 // Demo usage of the system
