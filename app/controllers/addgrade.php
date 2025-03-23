@@ -2,32 +2,36 @@
 
 namespace App\Controllers;
 
-require_once "../../config/studentsdb.php";
-require_once "../../config/coursesdb.php";
+require_once(__DIR__ . '/../../config/studentsdb.php');
+require_once(__DIR__ . '/../../config/coursesdb.php');
+require_once(__DIR__ . '/../models/findstudentinfo.php');
+require_once('calculatelettergrade.php');
 
-class AddGrade {
+use App\Controllers\CalculateLetterGrade;
+use App\Models\FindStudentInfo;
+
+$calculateLetterGrade = new CalculateLetterGrade();
+$findStudentInfo = new FindStudentInfo();
+
+class AddGrade
+{
     // Function to add a grade for a student in a course
     public function addGrade($studentId, $courseCode, $score)
     {
         global $students, $totalGradesAssigned;
+        global $calculateLetterGrade, $findStudentInfo;
 
         // Find the student
-        $studentIndex = -1;
-        foreach ($students as $index => $student) {
-            if ($student['id'] == $studentId) {
-                $studentIndex = $index;
-                break;
-            }
-        }
+        $studentIndex = $findStudentInfo->findStudentIndex($studentId);
 
         if ($studentIndex == -1) {
-            echo "Error: Student not found.<br>";
+            echo "Error: Student not found. <br>";
             return false;
         }
 
         // Validate score
         if ($score < 0 || $score > 100) {
-            echo "Error: Score must be between 0 and 100.<br>";
+            echo "Error: Score must be between 0 and 100. <br>";
             return false;
         }
 
@@ -42,7 +46,7 @@ class AddGrade {
         }
 
         if (!$courseExists) {
-            echo "Error: Course not found.<br>";
+            echo "Error: Course not found. <br>";
             return false;
         }
 
@@ -51,7 +55,7 @@ class AddGrade {
             if ($course['code'] == $courseCode) {
                 // Update existing grade
                 $students[$studentIndex]['courses'][$index]['score'] = $score;
-                $students[$studentIndex]['courses'][$index]['letterGrade'] = calculateLetterGrade($score, $students[$studentIndex]['type']);
+                $students[$studentIndex]['courses'][$index]['letterGrade'] = $calculateLetterGrade->calculateLetterGrade($score, $students[$studentIndex]['type']);
                 echo "Grade updated for student {$students[$studentIndex]['name']} in course {$courseCode}.<br>";
                 $totalGradesAssigned++;
                 return true;
@@ -62,10 +66,10 @@ class AddGrade {
         $students[$studentIndex]['courses'][] = [
             'code' => $courseCode,
             'score' => $score,
-            'letterGrade' => calculateLetterGrade($score, $students[$studentIndex]['type'])
+            'letterGrade' => $calculateLetterGrade->calculateLetterGrade($score, $students[$studentIndex]['type'])
         ];
 
-        echo "Grade added for student {$students[$studentIndex]['name']} in course {$courseCode}.<br>";
+        echo "Grade added for student {$students[$studentIndex]['name']} in course {$courseCode}. <br>";
         $totalGradesAssigned++;
         return true;
     }

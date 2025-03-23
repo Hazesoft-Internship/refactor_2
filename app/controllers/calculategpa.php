@@ -2,26 +2,27 @@
 
 namespace App\Controllers;
 
+use App\Models\FindStudentInfo;
+
+require_once(__DIR__ . '/../models/findstudentinfo.php');
+
+$findStudentInfo = new FindStudentInfo();
+
 class CalculateGPA {
     public function calculateGPA($studentId)
     {
-        global $students, $courses, $totalStudentsProcessed;
+        global $courses, $totalStudentsProcessed;
+        global $findStudentInfo;
 
         // Find the student
-        $studentIndex = -1;
-        foreach ($students as $index => $student) {
-            if ($student['id'] == $studentId) {
-                $studentIndex = $index;
-                break;
-            }
-        }
+        $studentIndex = $findStudentInfo->findStudentIndex($studentId);
 
         if ($studentIndex == -1) {
             echo "Error: Student not found.<br>";
             return -1;
         }
 
-        $student = $students[$studentIndex];
+        $student = $findStudentInfo->getStudent($studentIndex);
 
         if (empty($student['courses'])) {
             echo "Student has no courses.<br>";

@@ -2,34 +2,40 @@
 
 namespace App\Views;
 
+require_once (__DIR__ . '/../controllers/calculategpa.php');
+require_once(__DIR__ . '/../models/findstudentinfo.php');
+
+use App\Controllers\CalculateGPA;
+use App\Models\FindStudentInfo;
+
+
+// objects declaration
+$calculateGPA = new CalculateGPA();
+$findStudentInfo = new FindStudentInfo();
+
+
 class DisplayStudentReport {
     public function displayStudentReport($studentId)
     {
-        global $students;
+        global $calculateGPA, $findStudentInfo;
 
         // Find the student
-        $studentIndex = -1;
-        foreach ($students as $index => $student) {
-            if ($student['id'] == $studentId) {
-                $studentIndex = $index;
-                break;
-            }
-        }
+        $studentIndex = $findStudentInfo->findStudentIndex($studentId);
 
         if ($studentIndex == -1) {
             echo "Error: Student not found.<br>";
             return;
         }
 
-        $student = $students[$studentIndex];
-        $gpa = calculateGPA($studentId);
+        $student = $findStudentInfo->getStudent($studentIndex);
+        $gpa = $calculateGPA->calculateGPA($studentId);
 
-        echo "<br>====== Student Report ======<br>";
-        echo "ID: {$student['id']}<br>";
-        echo "Name: {$student['name']}<br>";
-        echo "Type: {$student['type']}<br>";
-        echo "GPA: {$gpa}<br>";
-        echo "Courses:<br>";
+        echo "<br>====== Student Report ====== <br>";
+        echo "ID: {$student['id']} <br>";
+        echo "Name: {$student['name']} <br>";
+        echo "Type: {$student['type']} <br>";
+        echo "GPA: {$gpa} <br>";
+        echo "Courses: <br>";
 
         if (empty($student['courses'])) {
             echo "No courses registered.<br>";

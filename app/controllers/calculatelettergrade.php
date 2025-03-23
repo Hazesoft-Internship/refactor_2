@@ -2,7 +2,7 @@
 
 namespace App\Controllers;
 
-class CalculateGrade {
+class CalculateLetterGrade {
     public function calculateLetterGrade($score, $studentType)
     {
         // Different grading scales based on student type
