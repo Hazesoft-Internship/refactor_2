@@ -4,7 +4,8 @@ namespace App\Models;
 
 require_once(__DIR__ . '/../../config/coursesdb.php');
 
-class FindCourseInfo {
+class FindCourseInfo
+{
     public function doesCourseExist($courseCode): bool
     {
         global $courses;

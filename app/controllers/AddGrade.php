@@ -2,10 +2,10 @@
 
 namespace App\Controllers;
 
-require_once(__DIR__ . '/../models/findstudentinfo.php');
-require_once(__DIR__ . '/../models/findcourseinfo.php');
-require_once(__DIR__ . '/../models/addnewgrade.php');
-require_once('calculatelettergrade.php');
+require_once(__DIR__ . '/../models/FindStudentInfo.php');
+require_once(__DIR__ . '/../models/FindCourseInfo.php');
+require_once(__DIR__ . '/../models/AddNewGrade.php');
+require_once('CalculateLetterGrade.php');
 
 use App\Models\AddNewGrade;
 use App\Controllers\CalculateLetterGrade;

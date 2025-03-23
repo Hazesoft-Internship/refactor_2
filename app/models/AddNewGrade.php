@@ -3,13 +3,14 @@
 namespace App\Models;
 
 require_once(__DIR__ . '/../../config/studentsdb.php');
-require_once (__DIR__ . '/../controllers/calculatelettergrade.php');
+require_once(__DIR__ . '/../controllers/CalculateLetterGrade.php');
 
 use App\Controllers\CalculateLetterGrade;
 
 $calculateLetterGrade = new CalculateLetterGrade();
 
-class AddNewGrade {
+class AddNewGrade
+{
     public function addNewGrade($studentIndex, $courseCode, $score): void
     {
         global $students;

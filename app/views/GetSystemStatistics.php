@@ -2,7 +2,8 @@
 
 namespace App\Views;
 
-class GetSystemStatistics {
+class GetSystemStatistics
+{
     // Function to get statistics about the system
     public function getSystemStatistics(): void
     {

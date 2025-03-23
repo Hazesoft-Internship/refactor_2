@@ -3,7 +3,7 @@
 namespace App\Models;
 
 require_once(__DIR__ . '/../../config/studentsdb.php');
-require_once(__DIR__ . '/../controllers/calculatelettergrade.php');
+require_once(__DIR__ . '/../controllers/CalculateLetterGrade.php');
 
 use App\Controllers\CalculateLetterGrade;
 
@@ -12,7 +12,7 @@ $calculateLetterGrade = new CalculateLetterGrade();
 class FindStudentInfo
 {
     // return studentIndex i.e., position of student in the database
-    public function findStudentIndex($studentId) : int
+    public function findStudentIndex($studentId): int
     {
         global $students;
         $studentIndex = -1;
@@ -24,6 +24,7 @@ class FindStudentInfo
         }
         return $studentIndex;
     }
+
     public function getStudent($studentIndex): array
     {
         global $students;

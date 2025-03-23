@@ -4,12 +4,13 @@ namespace App\Controllers;
 
 use App\Models\FindStudentInfo;
 
-require_once(__DIR__ . '/../models/findstudentinfo.php');
+require_once(__DIR__ . '/../models/FindStudentInfo.php');
 
 $findStudentInfo = new FindStudentInfo();
 
-class CalculateGPA {
-    public function calculateGPA($studentId)
+class CalculateGPA
+{
+    public function calculateGPA($studentId): float
     {
         global $courses, $totalStudentsProcessed;
         global $findStudentInfo;

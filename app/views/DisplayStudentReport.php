@@ -2,8 +2,8 @@
 
 namespace App\Views;
 
-require_once(__DIR__ . '/../controllers/calculategpa.php');
-require_once(__DIR__ . '/../models/findstudentinfo.php');
+require_once(__DIR__ . '/../controllers/CalculateGPA.php');
+require_once(__DIR__ . '/../models/FindStudentInfo.php');
 
 use App\Controllers\CalculateGPA;
 use App\Models\FindStudentInfo;
@@ -14,7 +14,8 @@ $calculateGPA = new CalculateGPA();
 $findStudentInfo = new FindStudentInfo();
 
 
-class DisplayStudentReport {
+class DisplayStudentReport
+{
     public function displayStudentReport($studentId): void
     {
         global $calculateGPA, $findStudentInfo;

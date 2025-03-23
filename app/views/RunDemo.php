@@ -2,9 +2,9 @@
 
 namespace App\Views;
 
-require_once(__DIR__ . '/../controllers/addgrade.php');
-require_once ('displaystudentreport.php');
-require_once ('getsystemstatistics.php');
+require_once(__DIR__ . '/../controllers/AddGrade.php');
+require_once('DisplayStudentReport.php');
+require_once('GetSystemStatistics.php');
 
 use App\Controllers\AddGrade;
 use App\Views\DisplayStudentReport;
@@ -15,7 +15,8 @@ $addGrade = new AddGrade();
 $displayStudentReport = new DisplayStudentReport();
 $getSystemStatistics = new GetSystemStatistics();
 
-class RunDemo {
+class RunDemo
+{
     public function runDemo(): void
     {
         global $addGrade, $displayStudentReport, $getSystemStatistics;
