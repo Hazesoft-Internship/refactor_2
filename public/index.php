@@ -17,8 +17,8 @@ use App\Views\GetSystemStatistics;
 use App\Views\RunDemo;
 
 // global stats
-$totalGradesAssigned = 0;
-$totalStudentsProcessed = 0;
+//$totalGradesAssigned = 0;
+//$totalStudentsProcessed = 0;
 
 // class instantiation
 $addGrade = new AddGrade();

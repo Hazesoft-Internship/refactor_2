@@ -2,7 +2,7 @@
 
 namespace App\Views;
 
-require_once (__DIR__ . '/../controllers/calculategpa.php');
+require_once(__DIR__ . '/../controllers/calculategpa.php');
 require_once(__DIR__ . '/../models/findstudentinfo.php');
 
 use App\Controllers\CalculateGPA;
@@ -46,5 +46,6 @@ class DisplayStudentReport {
         }
 
         echo "==========================<br>";
+        print_r($student);
     }
 }

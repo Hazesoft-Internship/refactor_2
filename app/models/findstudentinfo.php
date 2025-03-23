@@ -28,4 +28,20 @@ class FindStudentInfo
         return $students[$studentIndex];
     }
 
+    // Check if student already has a grade for this course
+    public function isStudentEnrolled($studentIndex)
+    {
+        global $students;
+        foreach ($students[$studentIndex]['courses'] as $index => $course) {
+            if ($course['code'] == $courseCode) {
+                // Update existing grade
+                $students[$studentIndex]['courses'][$index]['score'] = $score;
+                $students[$studentIndex]['courses'][$index]['letterGrade'] = $calculateLetterGrade->calculateLetterGrade($score, $students[$studentIndex]['type']);
+                echo "Grade updated for student {$students[$studentIndex]['name']} in course {$courseCode}.<br>";
+                $totalGradesAssigned++;
+                return true;
+            }
+        }
+    }
+
 }
