@@ -1,31 +1,35 @@
 <?php
 
 header('Content-Type: text/html; charset=utf-8');
+require_once "config/studentsdb.php";
+require_once "config/coursesdb.php";
+
 
 // Student Grade Management System
 
 // Database of students (simulated with arrays)
-$students = [
-    ['id' => 1, 'name' => 'John Doe', 'type' => 'undergraduate', 'courses' => []],
-    ['id' => 2, 'name' => 'Jane Smith', 'type' => 'graduate', 'courses' => []],
-    ['id' => 3, 'name' => 'Mike Johnson', 'type' => 'undergraduate', 'courses' => []],
-    ['id' => 4, 'name' => 'Sarah Williams', 'type' => 'phd', 'courses' => []]
-];
+// $students = [
+//     ['id' => 1, 'name' => 'John Doe', 'type' => 'undergraduate', 'courses' => []],
+//     ['id' => 2, 'name' => 'Jane Smith', 'type' => 'graduate', 'courses' => []],
+//     ['id' => 3, 'name' => 'Mike Johnson', 'type' => 'undergraduate', 'courses' => []]
+//     ['id' => 4, 'name' => 'Sarah Williams', 'type' => 'phd', 'courses' => []]
+// ];
 
 // Database of courses (simulated with arrays)
-$courses = [
-    ['code' => 'CS101', 'name' => 'Introduction to Programming', 'credits' => 3],
-    ['code' => 'CS201', 'name' => 'Data Structures', 'credits' => 4],
-    ['code' => 'MATH101', 'name' => 'Calculus I', 'credits' => 3],
-    ['code' => 'ENG101', 'name' => 'English Composition', 'credits' => 2]
-];
+// $courses = [
+//     ['code' => 'CS101', 'name' => 'Introduction to Programming', 'credits' => 3],
+//     ['code' => 'CS201', 'name' => 'Data Structures', 'credits' => 4],
+//     ['code' => 'MATH101', 'name' => 'Calculus I', 'credits' => 3],
+//     ['code' => 'ENG101', 'name' => 'English Composition', 'credits' => 2]
+// ];
 
 // Global stats
-$totalGradesAssigned = 0;
-$totalStudentsProcessed = 0;
+// $totalGradesAssigned = 0;
+// $totalStudentsProcessed = 0;
 
 // Function to add a grade for a student in a course
-function addGrade($studentId, $courseCode, $score) {
+function addGrade($studentId, $courseCode, $score)
+{
     global $students, $totalGradesAssigned;
 
     // Find the student
