@@ -3,10 +3,14 @@
 namespace App\Models;
 
 require_once(__DIR__ . '/../../config/studentsdb.php');
+require_once(__DIR__ . '/../controllers/calculatelettergrade.php');
+
+use App\Controllers\CalculateLetterGrade;
+
+$calculateLetterGrade = new CalculateLetterGrade();
 
 class FindStudentInfo
 {
-
     // return studentIndex i.e., position of student in the database
     public function findStudentIndex($studentId) : int
     {
@@ -20,8 +24,6 @@ class FindStudentInfo
         }
         return $studentIndex;
     }
-
-
     public function getStudent($studentIndex): array
     {
         global $students;
@@ -29,9 +31,9 @@ class FindStudentInfo
     }
 
     // Check if student already has a grade for this course
-    public function isStudentEnrolled($studentIndex)
+    public function isStudentEnrolled($studentIndex, $courseCode, $score): bool
     {
-        global $students;
+        global $students, $totalGradesAssigned, $calculateLetterGrade;
         foreach ($students[$studentIndex]['courses'] as $index => $course) {
             if ($course['code'] == $courseCode) {
                 // Update existing grade
@@ -42,6 +44,7 @@ class FindStudentInfo
                 return true;
             }
         }
+        return false;
     }
 
 }

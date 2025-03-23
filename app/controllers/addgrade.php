@@ -2,27 +2,34 @@
 
 namespace App\Controllers;
 
-require_once(__DIR__ . '/../../config/studentsdb.php');
-require_once(__DIR__ . '/../../config/coursesdb.php');
 require_once(__DIR__ . '/../models/findstudentinfo.php');
+require_once(__DIR__ . '/../models/findcourseinfo.php');
+require_once(__DIR__ . '/../models/addnewgrade.php');
 require_once('calculatelettergrade.php');
 
+use App\Models\AddNewGrade;
 use App\Controllers\CalculateLetterGrade;
 use App\Models\FindStudentInfo;
+use App\Models\FindCourseInfo;
 
+$addNewGrade = new AddNewGrade();
 $calculateLetterGrade = new CalculateLetterGrade();
 $findStudentInfo = new FindStudentInfo();
+$findCourseInfo = new FindCourseInfo();
 
 class AddGrade
 {
     // Function to add a grade for a student in a course
     public function addGrade($studentId, $courseCode, $score)
     {
-        global $students, $totalGradesAssigned;
-        global $calculateLetterGrade, $findStudentInfo;
+        global $totalGradesAssigned;
+        global $calculateLetterGrade, $findStudentInfo, $findCourseInfo, $addNewGrade;
 
         // Find the student
         $studentIndex = $findStudentInfo->findStudentIndex($studentId);
+
+        // Get student data
+        $student = $findStudentInfo->getStudent($studentIndex);
 
         if ($studentIndex == -1) {
             echo "Error: Student not found. <br>";
@@ -36,14 +43,7 @@ class AddGrade
         }
 
         // Check if course exists
-        $courseExists = false;
-        global $courses;
-        foreach ($courses as $course) {
-            if ($course['code'] == $courseCode) {
-                $courseExists = true;
-                break;
-            }
-        }
+        $courseExists = $findCourseInfo->doesCourseExist($courseCode);
 
         if (!$courseExists) {
             echo "Error: Course not found. <br>";
@@ -51,25 +51,12 @@ class AddGrade
         }
 
         // Check if student already has a grade for this course
-        foreach ($students[$studentIndex]['courses'] as $index => $course) {
-            if ($course['code'] == $courseCode) {
-                // Update existing grade
-                $students[$studentIndex]['courses'][$index]['score'] = $score;
-                $students[$studentIndex]['courses'][$index]['letterGrade'] = $calculateLetterGrade->calculateLetterGrade($score, $students[$studentIndex]['type']);
-                echo "Grade updated for student {$students[$studentIndex]['name']} in course {$courseCode}.<br>";
-                $totalGradesAssigned++;
-                return true;
-            }
-        }
+        $isStudentEnrolled = $findStudentInfo->isStudentEnrolled($studentIndex, $courseCode, $score);
 
         // Add new grade
-        $students[$studentIndex]['courses'][] = [
-            'code' => $courseCode,
-            'score' => $score,
-            'letterGrade' => $calculateLetterGrade->calculateLetterGrade($score, $students[$studentIndex]['type'])
-        ];
+        $addNewGrade->addNewGrade($studentIndex, $courseCode, $score);
 
-        echo "Grade added for student {$students[$studentIndex]['name']} in course {$courseCode}. <br>";
+        echo "Grade added for student {$student['name']} in course {$courseCode}. <br>";
         $totalGradesAssigned++;
         return true;
     }

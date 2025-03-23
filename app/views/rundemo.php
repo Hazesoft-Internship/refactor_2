@@ -16,7 +16,7 @@ $displayStudentReport = new DisplayStudentReport();
 $getSystemStatistics = new GetSystemStatistics();
 
 class RunDemo {
-    public function runDemo()
+    public function runDemo(): void
     {
         global $addGrade, $displayStudentReport, $getSystemStatistics;
         // Add some grades

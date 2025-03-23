@@ -4,7 +4,7 @@ namespace App\Views;
 
 class GetSystemStatistics {
     // Function to get statistics about the system
-    public function getSystemStatistics()
+    public function getSystemStatistics(): void
     {
         global $students, $totalGradesAssigned, $totalStudentsProcessed;
 

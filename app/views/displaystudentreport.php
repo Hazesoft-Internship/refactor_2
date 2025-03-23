@@ -15,7 +15,7 @@ $findStudentInfo = new FindStudentInfo();
 
 
 class DisplayStudentReport {
-    public function displayStudentReport($studentId)
+    public function displayStudentReport($studentId): void
     {
         global $calculateGPA, $findStudentInfo;
 
