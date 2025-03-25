@@ -1,6 +1,10 @@
 <?php
 require_once 'Repository/StudentRepository.php';
 
+use Repository\StudentRepository;
+use Repository\CourseRepository;
+use function Repository\seedData;
+
 $studentRepo = new StudentRepository();
 $courseRepo = new CourseRepository();
 seedData($studentRepo, $courseRepo);

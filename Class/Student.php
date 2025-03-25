@@ -1,5 +1,8 @@
 <?php
-class Student
+
+namespace Class;
+
+abstract class Student
 {
     public $id;
     public $name;

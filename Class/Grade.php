@@ -1,5 +1,8 @@
 <?php
-class Grade
+
+namespace Class;
+
+abstract class Grade
 {
     public static function getLetterGrade($score, $studentType)
     {
