@@ -6,9 +6,9 @@ use Repository\CourseRepository;
 use Repository\StudentRepository;
 use View\StudentView;
 
-require_once '../model/CourseRepository.php';
-require_once '../model/StudentRepository.php';
-require_once '../views/StudentView.php';
+require_once '../repository/CourseRepository.php';
+require_once '../repository/StudentRepository.php';
+require_once '../view/StudentView.php';
 
 class StudentController
 {

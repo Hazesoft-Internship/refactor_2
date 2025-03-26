@@ -5,6 +5,9 @@ namespace Model;
 use Model\Course;
 use Model\GradeRecord;
 
+require_once '../model/Course.php';
+require_once '../model/GradeRecord.php';
+
 abstract class Student
 {
     protected $id;

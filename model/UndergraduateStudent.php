@@ -4,6 +4,8 @@ namespace Model;
 
 use Model\Student;
 
+require_once '../model/Student.php';
+
 class UndergraduateStudent extends Student
 {
     public function calculateLetterGrade($score): string
