@@ -60,8 +60,6 @@ function addGrade($studentId, $courseCode, $score)
     }
 
     if (!$courseExists) {
-
-
         echo "Error: Course not found.<br>";
         return false;
     }
@@ -224,7 +222,6 @@ function displayStudentReport($studentId)
             echo "- {$course['code']}: Score = {$course['score']}, Grade = {$course['letterGrade']}<br>";
         }
     }
-
     echo "==========================<br>";
 }
 
