@@ -1,0 +1,12 @@
+{
+    "name": "hazesoft/refactor_2",
+    "description": "refactor_2",
+    "autoload": {
+        "psr-4": {
+            "Hazesoft\\Refactor2\\": "src/"
+        }
+    },
+    "require-dev": {
+        "symfony/var-dumper": "^7.2"
+    }
+}

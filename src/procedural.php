@@ -25,7 +25,8 @@ $totalGradesAssigned = 0;
 $totalStudentsProcessed = 0;
 
 // Function to add a grade for a student in a course
-function addGrade($studentId, $courseCode, $score) {
+function addGrade($studentId, $courseCode, $score)
+{
     global $students, $totalGradesAssigned;
 
     // Find the student
@@ -88,7 +89,8 @@ function addGrade($studentId, $courseCode, $score) {
 }
 
 // Function to calculate letter grade based on score and student type
-function calculateLetterGrade($score, $studentType) {
+function calculateLetterGrade($score, $studentType)
+{
     // Different grading scales based on student type
     if ($studentType == 'undergraduate') {
         if ($score >= 90) return 'A';
@@ -112,7 +114,8 @@ function calculateLetterGrade($score, $studentType) {
 }
 
 // Function to calculate GPA for a student
-function calculateGPA($studentId) {
+function calculateGPA($studentId)
+{
     global $students, $courses, $totalStudentsProcessed;
 
     // Find the student
@@ -171,7 +174,6 @@ function calculateGPA($studentId) {
             case 'F':
                 $points = 0.0;
                 break;
-
         }
 
         $totalPoints += $points * $courseCredit;
@@ -185,7 +187,8 @@ function calculateGPA($studentId) {
 }
 
 // Function to display student report
-function displayStudentReport($studentId) {
+function displayStudentReport($studentId)
+{
     global $students;
 
     // Find the student
@@ -219,12 +222,12 @@ function displayStudentReport($studentId) {
             echo "- {$course['code']}: Score = {$course['score']}, Grade = {$course['letterGrade']}<br>";
         }
     }
-
     echo "==========================<br>";
 }
 
 // Function to get statistics about the system
-function getSystemStatistics() {
+function getSystemStatistics()
+{
     global $students, $totalGradesAssigned, $totalStudentsProcessed;
 
     $totalStudents = count($students);
@@ -248,7 +251,8 @@ function getSystemStatistics() {
 }
 
 // Demo usage of the system
-function runDemo() {
+function runDemo()
+{
     // Add some grades
     addGrade(1, 'CS101', 85);
     addGrade(1, 'MATH101', 92);
