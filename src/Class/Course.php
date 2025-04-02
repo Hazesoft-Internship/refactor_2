@@ -1,4 +1,7 @@
 <?php
+
+namespace Weave\Refactor2\Class;
+
 class Course
 {
     public $code;

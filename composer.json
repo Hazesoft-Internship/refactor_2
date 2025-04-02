@@ -1,0 +1,15 @@
+{
+    "name": "weave/refactor_2",
+    "autoload": {
+        "psr-4": {
+            "Weave\\Refactor2\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "SafalGautam997",
+            "email": "safalgautam977@gmail.com"
+        }
+    ],
+    "require": {}
+}

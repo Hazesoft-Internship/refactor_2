@@ -1,16 +1,17 @@
 <?php
-require_once 'Repository/StudentRepository.php';
 
-$studentRepo = new StudentRepository();
-$courseRepo = new CourseRepository();
-seedData($studentRepo, $courseRepo);
+require __DIR__ . '/../vendor/autoload.php';
 
-foreach ($studentRepo->students as $student) {
+use Weave\Refactor2\Repository\StudentRepository;
+
+StudentRepository::initialize();
+
+foreach (StudentRepository::$students as $student) {
     echo "<br>====== Student Report ======<br>";
     echo "ID: {$student->id}<br>";
     echo "Name: {$student->name}<br>";
     echo "Type: {$student->type}<br>";
-    echo "GPA: {$student->gpa}<br>";
+    echo "GPA: " . ($student->gpa ?? 'N/A') . "<br>";
     echo "Courses:<br>";
     if (empty($student->courses)) {
         echo "No courses registered.<br>";
