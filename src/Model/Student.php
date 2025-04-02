@@ -1,4 +1,7 @@
 <?php
+
+namespace suyas\refactor_2\Model;
+
 class Student
 {
     public $id;

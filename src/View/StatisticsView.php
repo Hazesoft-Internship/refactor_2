@@ -1,4 +1,7 @@
 <?php
+
+namespace suyas\refactor_2\View;
+
 class StatisticsView
 {
     public static function display($stats)

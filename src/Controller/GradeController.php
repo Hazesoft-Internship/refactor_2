@@ -1,4 +1,14 @@
 <?php
+
+namespace suyas\refactor_2\Controller;
+
+use suyas\refactor_2\Model\Student;
+use suyas\refactor_2\Model\Course;
+use suyas\refactor_2\Grading\GraduateGrading;
+use suyas\refactor_2\Grading\PhDGrading;
+use suyas\refactor_2\Grading\UndergraduateGrading;
+use Exception;
+
 class GradeController
 {
     private $students = [];

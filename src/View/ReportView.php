@@ -1,4 +1,7 @@
 <?php
+
+namespace suyas\refactor_2\View;
+
 class ReportView
 {
     public static function display($student, $gpa)
