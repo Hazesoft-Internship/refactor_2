@@ -1,0 +1,15 @@
+{
+    "name": "suyas/refactor_2",
+    "autoload": {
+        "psr-4": {
+            "suyas\\refactor_2\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "ZenG-ipynb",
+            "email": "suyash.shraddha52@gmail.com"
+        }
+    ],
+    "require": {}
+}
